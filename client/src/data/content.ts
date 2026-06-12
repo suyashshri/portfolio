@@ -9,7 +9,7 @@
 export const profile = {
   name: "Suyash",
   firstName: "Suyash",
-  role: "Full-stack Developer",
+  role: "Full Stack Developer",
   tagline: "building AI-powered web products",
   availability: "Available for work",
   location: "India · IST",

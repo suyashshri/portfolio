@@ -24,7 +24,9 @@ export default function Skills() {
                   initial="hidden"
                   whileInView="visible"
                   viewport={{ once: true }}
-                  variants={{ visible: { transition: { staggerChildren: 0.05 } } }}
+                  variants={{
+                    visible: { transition: { staggerChildren: 0.05 } },
+                  }}
                   className="flex flex-wrap gap-2"
                 >
                   {group.skills.map((skill) => (
@@ -48,10 +50,13 @@ export default function Skills() {
       </div>
 
       {/* infinite marquee strip */}
-      <div className="relative mt-20 overflow-hidden border-y border-line py-5 [mask-image:linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
+      <div className="relative mt-20 overflow-hidden border-y border-line py-5 mask-[linear-gradient(to_right,transparent,black_15%,black_85%,transparent)]">
         <div className="flex w-max animate-marquee gap-12 whitespace-nowrap">
           {[...marqueeSkills, ...marqueeSkills].map((skill, i) => (
-            <span key={i} className="flex items-center gap-12 font-mono text-sm text-muted">
+            <span
+              key={i}
+              className="flex items-center gap-12 font-mono text-sm text-muted"
+            >
               {skill}
               <span className="text-accent/60">✦</span>
             </span>

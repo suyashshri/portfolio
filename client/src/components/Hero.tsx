@@ -21,11 +21,14 @@ const item: Variants = {
 
 export default function Hero() {
   return (
-    <section id="top" className="relative flex min-h-svh items-center overflow-hidden">
+    <section
+      id="top"
+      className="relative flex min-h-svh items-center overflow-hidden"
+    >
       {/* ambient glows */}
       <div
         aria-hidden
-        className="pointer-events-none absolute -top-40 left-1/2 h-[34rem] w-[54rem] -translate-x-1/2 rounded-full opacity-40 blur-[120px]"
+        className="pointer-events-none absolute -top-40 left-1/2 h-136 w-216 -translate-x-1/2 rounded-full opacity-40 blur-[120px]"
         style={{
           background:
             "radial-gradient(closest-side, rgba(167,139,250,0.35), rgba(103,232,249,0.12), transparent)",
@@ -33,7 +36,7 @@ export default function Hero() {
       />
       <div
         aria-hidden
-        className="pointer-events-none absolute right-[-10rem] bottom-[-8rem] h-96 w-96 rounded-full bg-accent-2/10 blur-[100px]"
+        className="pointer-events-none absolute -right-40 -bottom-32 h-96 w-96 rounded-full bg-accent-2/10 blur-[100px]"
       />
       {/* faint grid */}
       <div
@@ -43,7 +46,8 @@ export default function Hero() {
           backgroundImage:
             "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
           backgroundSize: "72px 72px",
-          maskImage: "radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent)",
+          maskImage:
+            "radial-gradient(ellipse 80% 60% at 50% 40%, black, transparent)",
         }}
       />
 
@@ -61,12 +65,14 @@ export default function Hero() {
             </span>
             {profile.availability}
           </span>
-          <span className="font-mono text-xs text-muted">{profile.location}</span>
+          <span className="font-mono text-xs text-muted">
+            {profile.location}
+          </span>
         </motion.div>
 
         <motion.h1
           variants={item}
-          className="max-w-4xl text-5xl font-semibold tracking-tight text-bright sm:text-7xl"
+          className="max-w-5xl text-5xl font-semibold tracking-tight text-bright sm:text-7xl"
         >
           {profile.firstName} —{" "}
           <span className="text-gradient">{profile.role}</span>{" "}
@@ -82,7 +88,10 @@ export default function Hero() {
           {profile.heroIntro}
         </motion.p>
 
-        <motion.div variants={item} className="mt-10 flex flex-wrap items-center gap-4">
+        <motion.div
+          variants={item}
+          className="mt-10 flex flex-wrap items-center gap-4"
+        >
           <MagneticButton href="#work">
             View work <ArrowDown size={16} />
           </MagneticButton>

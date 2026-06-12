@@ -1,6 +1,12 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, type FormEvent } from "react";
-import { Send, CheckCircle2, AlertCircle, Loader2, Download } from "lucide-react";
+import {
+  Send,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  Download,
+} from "lucide-react";
 import { profile, socials } from "../data/content";
 import SectionHeading from "./ui/SectionHeading";
 import Reveal from "./ui/Reveal";
@@ -19,7 +25,10 @@ export default function Contact() {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form)) as Record<string, string>;
+    const data = Object.fromEntries(new FormData(form)) as Record<
+      string,
+      string
+    >;
 
     setStatus("sending");
     setError("");
@@ -34,7 +43,9 @@ export default function Contact() {
       form.reset();
     } catch {
       setStatus("error");
-      setError("Couldn't send your message — is the API server running? You can always email me directly.");
+      setError(
+        "Couldn't send your message — is the API server running? You can always email me directly.",
+      );
     }
   }
 
@@ -42,7 +53,7 @@ export default function Contact() {
     <section id="contact" className="relative overflow-hidden py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute bottom-[-14rem] left-1/2 h-[28rem] w-[44rem] -translate-x-1/2 rounded-full opacity-30 blur-[120px]"
+        className="pointer-events-none absolute -bottom-56 left-1/2 h-112 w-176 -translate-x-1/2 rounded-full opacity-30 blur-[120px]"
         style={{
           background:
             "radial-gradient(closest-side, rgba(167,139,250,0.45), rgba(103,232,249,0.15), transparent)",
@@ -69,7 +80,11 @@ export default function Contact() {
               </p>
 
               <div className="flex flex-wrap items-center gap-3">
-                <MagneticButton href={profile.resumeUrl} variant="ghost" download>
+                <MagneticButton
+                  href={profile.resumeUrl}
+                  variant="ghost"
+                  download
+                >
                   <Download size={16} /> Download resume
                 </MagneticButton>
               </div>
@@ -97,7 +112,10 @@ export default function Contact() {
           </Reveal>
 
           <Reveal delay={0.15}>
-            <form onSubmit={handleSubmit} className="glass space-y-4 rounded-2xl p-7">
+            <form
+              onSubmit={handleSubmit}
+              className="glass space-y-4 rounded-2xl p-7"
+            >
               <div className="grid gap-4 sm:grid-cols-2">
                 <input
                   name="name"
@@ -114,7 +132,11 @@ export default function Contact() {
                   className={inputClasses}
                 />
               </div>
-              <input name="subject" placeholder="Subject (optional)" className={inputClasses} />
+              <input
+                name="subject"
+                placeholder="Subject (optional)"
+                className={inputClasses}
+              />
               <textarea
                 name="message"
                 required

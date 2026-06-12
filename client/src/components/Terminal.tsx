@@ -6,7 +6,13 @@ import {
   type KeyboardEvent,
   type ReactNode,
 } from "react";
-import { profile, projects, skillGroups, timeline, socials } from "../data/content";
+import {
+  profile,
+  projects,
+  skillGroups,
+  timeline,
+  socials,
+} from "../data/content";
 import SectionHeading from "./ui/SectionHeading";
 import Reveal from "./ui/Reveal";
 
@@ -82,7 +88,6 @@ export default function Terminal() {
       </p>,
       <p>&nbsp;</p>,
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // keep scrolled to bottom
@@ -127,21 +132,34 @@ export default function Terminal() {
       case "whoami":
         push(
           <p>
-            {profile.name} — <Hint>{profile.role}, {profile.tagline}. {profile.location}.</Hint>
+            {profile.name} —{" "}
+            <Hint>
+              {profile.role}, {profile.tagline}. {profile.location}.
+            </Hint>
           </p>,
         );
         break;
 
       case "about":
-        profile.about.forEach((para) => push(<p><Hint>{para}</Hint></p>, <p>&nbsp;</p>));
+        profile.about.forEach((para) =>
+          push(
+            <p>
+              <Hint>{para}</Hint>
+            </p>,
+            <p>&nbsp;</p>,
+          ),
+        );
         break;
 
       case "projects":
         projects.forEach((p, i) =>
           push(
             <p>
-              <span className="text-muted">{String(i + 1).padStart(2, "0")}.</span>{" "}
-              <Key>{p.title}</Key> <span className="text-muted">({p.year})</span>
+              <span className="text-muted">
+                {String(i + 1).padStart(2, "0")}.
+              </span>{" "}
+              <Key>{p.title}</Key>{" "}
+              <span className="text-muted">({p.year})</span>
             </p>,
             <p className="pl-6">
               <Hint>{p.description}</Hint>
@@ -156,8 +174,7 @@ export default function Terminal() {
         skillGroups.forEach((group) =>
           push(
             <p>
-              <Key>{group.title}</Key>{" "}
-              <Hint>→ {group.skills.join(", ")}</Hint>
+              <Key>{group.title}</Key> <Hint>→ {group.skills.join(", ")}</Hint>
             </p>,
           ),
         );
@@ -167,8 +184,8 @@ export default function Terminal() {
         timeline.forEach((t) =>
           push(
             <p>
-              <span className="text-muted">{t.period}</span> <Key>{t.title}</Key>{" "}
-              <Hint>@ {t.org}</Hint>
+              <span className="text-muted">{t.period}</span>{" "}
+              <Key>{t.title}</Key> <Hint>@ {t.org}</Hint>
             </p>,
             <p className="pl-4">
               <Hint>{t.description}</Hint>
@@ -206,18 +223,29 @@ export default function Terminal() {
             >
               {profile.email}
             </a>{" "}
-            <Hint>— or scroll down and use the form. {profile.availability.toLowerCase()}!</Hint>
+            <Hint>
+              — or scroll down and use the form.{" "}
+              {profile.availability.toLowerCase()}!
+            </Hint>
           </p>,
         );
         break;
 
       case "resume":
-        push(<p><Hint>Opening resume…</Hint></p>);
+        push(
+          <p>
+            <Hint>Opening resume…</Hint>
+          </p>,
+        );
         window.open(profile.resumeUrl, "_blank");
         break;
 
       case "status": {
-        push(<p><Hint>Pinging API…</Hint></p>);
+        push(
+          <p>
+            <Hint>Pinging API…</Hint>
+          </p>,
+        );
         try {
           const started = performance.now();
           const res = await fetch("/api/health");
@@ -225,9 +253,12 @@ export default function Terminal() {
           const data = (await res.json()) as { status: string; uptime: number };
           push(
             <p>
-              <span className="text-emerald-400">● {data.status.toUpperCase()}</span>{" "}
+              <span className="text-emerald-400">
+                ● {data.status.toUpperCase()}
+              </span>{" "}
               <Hint>
-                — Elysia API answered in {ms}ms · uptime {Math.floor(data.uptime)}s
+                — Elysia API answered in {ms}ms · uptime{" "}
+                {Math.floor(data.uptime)}s
               </Hint>
             </p>,
           );
@@ -247,14 +278,19 @@ export default function Terminal() {
         break;
 
       case "date":
-        push(<p><Hint>{new Date().toString()}</Hint></p>);
+        push(
+          <p>
+            <Hint>{new Date().toString()}</Hint>
+          </p>,
+        );
         break;
 
       case "history":
         history.forEach((h, i) =>
           push(
             <p>
-              <span className="text-muted">{String(i + 1).padStart(3)}</span> {h}
+              <span className="text-muted">{String(i + 1).padStart(3)}</span>{" "}
+              {h}
             </p>,
           ),
         );
@@ -282,7 +318,8 @@ export default function Terminal() {
           push(
             <p>
               <Hint>
-                guest is not in the sudoers file. This incident will be reported.{" "}
+                guest is not in the sudoers file. This incident will be
+                reported.{" "}
               </Hint>
               <Hint>
                 (psst — try <Key>sudo hire-me</Key>)
@@ -320,7 +357,10 @@ export default function Terminal() {
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       if (!history.length) return;
-      const next = historyIndex === -1 ? history.length - 1 : Math.max(0, historyIndex - 1);
+      const next =
+        historyIndex === -1
+          ? history.length - 1
+          : Math.max(0, historyIndex - 1);
       setHistoryIndex(next);
       setInput(history[next]);
     } else if (e.key === "ArrowDown") {
@@ -342,7 +382,11 @@ export default function Terminal() {
       if (matches.length === 1) {
         setInput(matches[0]);
       } else if (matches.length > 1) {
-        push(<p><Hint>{matches.join("   ")}</Hint></p>);
+        push(
+          <p>
+            <Hint>{matches.join("   ")}</Hint>
+          </p>,
+        );
       }
     } else if (e.key === "l" && e.ctrlKey) {
       e.preventDefault();
@@ -354,7 +398,7 @@ export default function Terminal() {
     <section id="terminal" className="relative py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/3 left-[-10rem] h-72 w-72 rounded-full bg-accent/8 blur-[110px]"
+        className="pointer-events-none absolute top-1/3 -left-40 h-72 w-72 rounded-full bg-accent/8 blur-[110px]"
       />
       <div className="section-shell">
         <SectionHeading

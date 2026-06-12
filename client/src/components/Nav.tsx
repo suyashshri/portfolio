@@ -28,7 +28,7 @@ export default function Nav() {
     <>
       {/* scroll progress bar */}
       <motion.div
-        className="fixed inset-x-0 top-0 z-[60] h-px origin-left bg-gradient-to-r from-accent to-accent-2"
+        className="fixed inset-x-0 top-0 z-60 h-px origin-left bg-linear-to-r from-accent to-accent-2"
         style={{ scaleX: progress }}
       />
 
@@ -47,7 +47,7 @@ export default function Nav() {
             href="#top"
             className="group flex items-center gap-2 text-sm font-semibold text-bright"
           >
-            <span className="inline-block h-2 w-2 rounded-full bg-gradient-to-r from-accent to-accent-2 transition-transform duration-300 group-hover:scale-150" />
+            <span className="inline-block h-2 w-2 rounded-full bg-linear-to-r from-accent to-accent-2 transition-transform duration-300 group-hover:scale-150" />
             {profile.name.toLowerCase()}
           </a>
 

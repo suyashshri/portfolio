@@ -6,8 +6,7 @@ export default function Footer() {
     <footer className="border-t border-line py-10">
       <div className="section-shell flex flex-col items-center justify-between gap-4 sm:flex-row">
         <p className="text-sm text-muted">
-          © {new Date().getFullYear()} {profile.name}. Crafted with React, Elysia &
-          Framer Motion.
+          © {new Date().getFullYear()} {profile.name}.
         </p>
         <a
           href="#top"

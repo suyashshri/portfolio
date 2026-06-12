@@ -8,7 +8,7 @@ export default function About() {
     <section id="about" className="relative py-28">
       <div
         aria-hidden
-        className="pointer-events-none absolute top-1/3 left-[-12rem] h-80 w-80 rounded-full bg-accent/8 blur-[110px]"
+        className="pointer-events-none absolute top-1/3 -left-48 h-80 w-80 rounded-full bg-accent/8 blur-[110px]"
       />
       <div className="section-shell">
         <SectionHeading eyebrow="02 · About" title="A bit about me" />
@@ -41,7 +41,9 @@ export default function About() {
                   transition={{ type: "spring", stiffness: 300, damping: 22 }}
                   className="glass rounded-2xl p-6"
                 >
-                  <p className="text-gradient text-3xl font-semibold">{stat.value}</p>
+                  <p className="text-gradient text-3xl font-semibold">
+                    {stat.value}
+                  </p>
                   <p className="mt-2 text-sm text-muted">{stat.label}</p>
                 </motion.div>
               </Reveal>
